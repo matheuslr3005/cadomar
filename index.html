@@ -1,0 +1,866 @@
+<meta charset="utf-8">
+<title>Cadomar Transportadora</title>
+<meta name="description" content="Transportadora Cadomar: transporte de cargas, logística e armazenagem desde 1968, com unidades em Canoas/RS e Itapecerica da Serra/SP.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,100..125,100..900;1,100..125,100..900&display=swap">
+<style>
+/* Layout concept: fleet-photo hero with a colour spotlight that follows the pointer, a slanted red marquee,
+   pinned story column beside a scroll-drawn timeline, expanding service panels, a route network map,
+   then a red wipe band into the contact form. Slant = -17deg from the logo, used for every motion accent. */
+:root {
+  --red-400: #e64a41; --red-500: #da251c; --red-600: #be1e15; --red-700: #9c1710; --red-50: #fef2f1;
+  --ink-900: #14161a; --ink-800: #1d2026; --ink-700: #2a2e35; --ink-600: #434952; --ink-500: #5a616b; --ink-400: #868d97;
+  --ink-300: #c3c8ce; --ink-200: #e2e5e9; --ink-100: #f1f3f5; --ink-50: #f8f9fa; --white: #ffffff;
+  --steel-900: #182f42; --steel-500: #3c6c93; --steel-300: #7fa2be;
+  --green-500: #1f7a45;
+
+  --surface-page: #ffffff; --surface-sunken: var(--ink-50); --surface-card: #ffffff; --surface-inverse: var(--ink-900);
+  --text-strong: var(--ink-900); --text-body: var(--ink-700); --text-muted: var(--ink-500);
+  --border-subtle: var(--ink-200); --border-default: var(--ink-300);
+  --accent-text: var(--red-600); --field-bg: #ffffff;
+
+  --gradient-photo: linear-gradient(180deg, #182f42 0%, #3c6c93 55%, #7fa2be 100%);
+  --scrim: linear-gradient(180deg, rgba(24,47,66,0) 0%, rgba(24,47,66,.72) 70%, rgba(24,47,66,.92) 100%);
+  --shadow-md: 0 6px 18px rgba(20,22,26,.10); --shadow-lg: 0 18px 44px rgba(20,22,26,.16);
+  --shadow-brand: 0 8px 24px rgba(218,37,28,.28); --focus-ring: 0 0 0 3px rgba(218,37,28,.32);
+
+  --font: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --slant: skewX(-17deg); --unslant: skewX(17deg);
+  --ease: cubic-bezier(.2,.6,.2,1); --ease-out: cubic-bezier(.16,1,.3,1);
+  --gut: clamp(16px, 4vw, 40px); --maxw: 1200px; --sec-y: clamp(64px, 9vw, 112px);
+  --radius: 4px; --header-h: 76px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --surface-page: #101216; --surface-sunken: #171a1f; --surface-card: #1d2026; --surface-inverse: #0a0b0d;
+    --text-strong: #ffffff; --text-body: #c3c8ce; --text-muted: #9aa1ab;
+    --border-subtle: #2a2e35; --border-default: #434952; --accent-text: var(--red-400); --field-bg: #171a1f;
+    --shadow-md: 0 6px 18px rgba(0,0,0,.4); --shadow-lg: 0 18px 44px rgba(0,0,0,.5);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --surface-page: #101216; --surface-sunken: #171a1f; --surface-card: #1d2026; --surface-inverse: #0a0b0d;
+  --text-strong: #ffffff; --text-body: #c3c8ce; --text-muted: #9aa1ab;
+  --border-subtle: #2a2e35; --border-default: #434952; --accent-text: var(--red-400); --field-bg: #171a1f;
+  --shadow-md: 0 6px 18px rgba(0,0,0,.4); --shadow-lg: 0 18px 44px rgba(0,0,0,.5);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 8px); }
+body {
+  margin: 0; background: var(--surface-page); color: var(--text-body);
+  font: 400 16px/1.6 var(--font); font-stretch: 100%; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+h1, h2, h3, p { margin: 0; }
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--red-500); outline-offset: 2px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.wrap { max-width: var(--maxw); margin: 0 auto; padding-inline: var(--gut); }
+.disp { font-weight: 800; font-stretch: 110%; letter-spacing: -.02em; }
+.overline {
+  font-size: 12px; font-weight: 700; font-stretch: 110%; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent-text); display: inline-flex; align-items: center; gap: 12px; line-height: 1.2;
+}
+.rule { display: block; width: 56px; height: 3px; background: var(--red-500); transform: var(--slant); transform-origin: left; }
+.w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 .06em .1em 0; margin-right: -.06em; }
+.wi { display: inline-block; will-change: transform; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 10px; overflow: hidden;
+  min-height: 54px; padding: 16px 30px; border-radius: var(--radius); border: 1px solid var(--red-500);
+  background: var(--red-500); color: #fff; text-decoration: none; cursor: pointer; line-height: 1;
+  font-weight: 800; font-stretch: 110%; letter-spacing: .04em; text-transform: uppercase; font-size: 15px;
+  transition: transform 140ms var(--ease), box-shadow 220ms var(--ease), color 220ms var(--ease), border-color 220ms var(--ease);
+  isolation: isolate;
+}
+.btn::before {
+  content: ""; position: absolute; inset: -2px -30px; background: var(--red-600); transform: var(--slant) translateX(-115%);
+  transition: transform 420ms var(--ease-out); z-index: -1;
+}
+.btn:hover { box-shadow: var(--shadow-brand); }
+.btn:hover::before { transform: var(--slant) translateX(0); }
+.btn:active { transform: scale(.985); }
+.btn svg { width: 18px; height: 18px; transition: transform 300ms var(--ease-out); }
+.btn:hover svg { transform: translateX(4px); }
+.btn.inverse { background: #fff; color: var(--ink-900); border-color: #fff; }
+.btn.inverse::before { background: var(--ink-900); }
+.btn.inverse:hover { color: #fff; box-shadow: none; }
+.btn.ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.5); }
+.btn.ghost::before { background: #fff; }
+.btn.ghost:hover { color: var(--ink-900); border-color: #fff; box-shadow: none; }
+.btn.sm { min-height: 40px; padding: 10px 18px; font-size: 13px; }
+.mag { will-change: transform; }
+
+/* ---------- Header ---------- */
+.hdr {
+  position: fixed; inset: 0 0 auto 0; z-index: 50; height: var(--header-h);
+  padding-top: env(safe-area-inset-top, 0px); box-sizing: content-box;
+  transition: transform 420ms var(--ease-out), background 260ms var(--ease);
+  border-bottom: 1px solid rgba(255,255,255,.16);
+}
+.hdr.solid { background: var(--ink-900); border-bottom-color: #2a2e35; }
+.hdr.hide { transform: translateY(-100%); }
+.hdr .wrap { height: 100%; display: flex; align-items: center; gap: 28px; }
+.hdr .logo img { height: 24px; width: auto; }
+.hdr nav { margin-left: auto; display: flex; align-items: center; gap: 28px; }
+.hdr nav a.nl {
+  position: relative; padding: 6px 0; text-decoration: none; color: rgba(255,255,255,.72);
+  font-size: 13px; font-weight: 700; font-stretch: 110%; letter-spacing: .04em; text-transform: uppercase; transition: color 140ms var(--ease);
+}
+.hdr nav a.nl::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 3px; background: var(--red-500);
+  transform: var(--slant) scaleX(0); transform-origin: left; transition: transform 220ms var(--ease);
+}
+.hdr nav a.nl:hover, .hdr nav a.nl.on { color: #fff; }
+.hdr nav a.nl:hover::after, .hdr nav a.nl.on::after { transform: var(--slant) scaleX(1); }
+.hdr .tel { color: #fff; font-size: 13px; font-weight: 800; font-stretch: 110%; text-decoration: none; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.progress { position: absolute; left: 0; bottom: -1px; height: 3px; width: 100%; background: var(--red-500); transform-origin: left; transform: scaleX(0); }
+.burger { display: none; margin-left: auto; width: 44px; height: 44px; background: none; border: 1px solid rgba(255,255,255,.4); border-radius: var(--radius); color: #fff; cursor: pointer; }
+.burger svg { width: 22px; height: 22px; margin: auto; }
+.menu {
+  position: fixed; inset: 0; z-index: 49; background: var(--ink-900); padding: calc(var(--header-h) + 32px) var(--gut) 32px;
+  display: flex; flex-direction: column; gap: 6px; clip-path: inset(0 0 100% 0); transition: clip-path 520ms var(--ease-out); visibility: hidden;
+}
+.menu.open { clip-path: inset(0 0 0 0); visibility: visible; }
+.menu a.ml { color: #fff; text-decoration: none; font-weight: 800; font-stretch: 110%; font-size: clamp(30px, 9vw, 44px); letter-spacing: -.02em; padding: 8px 0; border-bottom: 1px solid #2a2e35; }
+.menu .btn { margin-top: 20px; align-self: flex-start; }
+
+/* ---------- Hero ---------- */
+.hero { position: relative; background: var(--ink-900); color: #fff; overflow: hidden; isolation: isolate; }
+.hero-media { position: absolute; inset: -6% 0 0 0; z-index: -3; will-change: transform; }
+.hero-wash, .hero-color { position: absolute; inset: 0; }
+.hero-wash { background: var(--gradient-photo); }
+.hero-wash img, .hero-color img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 100%; }
+.hero-wash img { mix-blend-mode: luminosity; opacity: .92; }
+.hero-color {
+  --mx: 68%; --my: 72%; --r: 0px;
+  -webkit-mask-image: radial-gradient(circle var(--r) at var(--mx) var(--my), #000 35%, transparent 100%);
+  mask-image: radial-gradient(circle var(--r) at var(--mx) var(--my), #000 35%, transparent 100%);
+}
+.hero-scrim { position: absolute; inset: 0; z-index: -2; background: linear-gradient(90deg, rgba(20,22,26,.72) 0%, rgba(20,22,26,.25) 55%, rgba(20,22,26,0) 80%), linear-gradient(180deg, rgba(20,22,26,.55) 0%, rgba(20,22,26,0) 30%, rgba(24,47,66,0) 60%, rgba(24,47,66,.82) 100%); }
+.hero-in { padding-top: calc(var(--header-h) + clamp(48px, 8vw, 96px)); padding-bottom: 40px; display: flex; flex-direction: column; align-items: flex-start; }
+.plate {
+  display: inline-block; transform: var(--slant); padding: 6px 16px; background: var(--red-500); margin-bottom: 26px;
+}
+.plate span { display: inline-block; transform: var(--unslant); font-weight: 800; font-stretch: 110%; font-style: italic; text-transform: uppercase; font-size: 13px; letter-spacing: -.01em; line-height: 1.1; color: #fff; }
+.hero h1 { font-size: clamp(2.4rem, 5.6vw, 4.6rem); line-height: .98; max-width: 17ch; color: #fff; text-wrap: balance; }
+.hero-gap { height: clamp(150px, 27vw, 340px); }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; }
+.hero-meta { margin-top: 44px; width: 100%; display: flex; flex-wrap: wrap; gap: 10px 36px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.22); font-size: 13px; color: rgba(255,255,255,.82); }
+.hero-meta b { color: #fff; font-weight: 800; font-stretch: 110%; letter-spacing: .04em; text-transform: uppercase; font-size: 12px; margin-right: 8px; }
+.hero-hint { position: absolute; right: var(--gut); bottom: 22px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; color: rgba(255,255,255,.7); display: flex; align-items: center; gap: 10px; }
+.hero-hint i { width: 8px; height: 8px; border-radius: 50%; background: var(--red-500); box-shadow: 0 0 0 0 rgba(218,37,28,.6); animation: ping 2s infinite; }
+@keyframes ping { 70% { box-shadow: 0 0 0 10px rgba(218,37,28,0); } 100% { box-shadow: 0 0 0 0 rgba(218,37,28,0); } }
+
+/* ---------- Marquee ---------- */
+.marq { background: var(--red-500); color: #fff; overflow: hidden; border-block: 1px solid var(--red-700); }
+.marq-track { display: flex; width: max-content; will-change: transform; }
+.marq-set { display: flex; align-items: center; flex-shrink: 0; }
+.marq-set span { font-weight: 800; font-stretch: 110%; font-style: italic; text-transform: uppercase; font-size: clamp(20px, 3vw, 30px); letter-spacing: -.01em; padding: 16px 0; white-space: nowrap; }
+.marq-set i { display: block; width: 14px; height: 26px; background: #fff; transform: var(--slant); margin: 0 clamp(20px, 3vw, 40px); opacity: .9; }
+
+/* ---------- Stats ---------- */
+.stats { background: var(--surface-inverse); color: #fff; padding-block: clamp(36px, 5vw, 56px); }
+.stats .wrap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.stat { display: flex; flex-direction: column; gap: 6px; padding-left: 20px; border-left: 3px solid var(--red-500); }
+.stat b { font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1; font-weight: 800; font-stretch: 110%; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.stat b em { font-style: normal; color: var(--red-400); }
+.stat span { font-size: 12px; font-weight: 700; font-stretch: 110%; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.72); }
+
+/* ---------- Sections ---------- */
+.sec { padding-block: var(--sec-y); }
+.sec.sunken { background: var(--surface-sunken); }
+.sh { display: flex; flex-direction: column; gap: 18px; align-items: flex-start; }
+.sh h2 { font-size: clamp(2rem, 4.4vw, 3.4rem); line-height: 1.04; color: var(--text-strong); text-wrap: balance; max-width: 18ch; }
+.lead { font-size: 18px; max-width: 58ch; text-wrap: pretty; color: var(--text-body); }
+
+/* Empresa */
+.story { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(32px, 6vw, 88px); align-items: start; }
+.story-l { position: sticky; top: calc(var(--header-h) + 32px); display: flex; flex-direction: column; gap: 28px; }
+.photo { position: relative; margin: 0; overflow: hidden; border-radius: var(--radius); aspect-ratio: 4 / 3; background: var(--ink-900); }
+.photo img { position: absolute; inset: -8% 0; width: 100%; height: 116%; object-fit: cover; object-position: 50% 80%; will-change: transform; }
+.photo figcaption { position: absolute; inset: auto 0 0 0; padding: 24px 20px 16px; background: var(--scrim); color: rgba(255,255,255,.86); font-size: 14px; }
+.tl { position: relative; padding-left: 44px; display: flex; flex-direction: column; gap: 56px; }
+.tl-line, .tl-fill { position: absolute; left: 17px; top: 14px; bottom: 14px; width: 3px; background: var(--border-subtle); }
+.tl-fill { background: var(--red-500); transform-origin: top; transform: scaleY(0); }
+.tl-step { position: relative; display: flex; flex-direction: column; gap: 10px; }
+.tl-step::before { content: ""; position: absolute; left: -41px; top: 6px; width: 16px; height: 16px; background: var(--surface-page); border: 3px solid var(--border-default); border-radius: 50%; transition: background 300ms var(--ease), border-color 300ms var(--ease), transform 300ms var(--ease-out); }
+.sunken .tl-step::before { background: var(--surface-sunken); }
+.tl-step.on::before { background: var(--red-500); border-color: var(--red-500); transform: scale(1.25); }
+.tl-step h3 { font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.1; color: var(--text-strong); }
+.tl-step p { font-size: 17px; max-width: 54ch; text-wrap: pretty; }
+.founders { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 8px; }
+.founder {
+  position: relative; background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius); padding: 20px 16px 16px;
+  transition: box-shadow 220ms var(--ease); overflow: hidden;
+}
+.founder::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 4px; background: var(--red-500); }
+.founder:hover { box-shadow: var(--shadow-lg); }
+.founder b { display: block; font-size: 17px; line-height: 1.2; font-weight: 800; font-stretch: 110%; color: var(--text-strong); letter-spacing: -.01em; }
+.founder span { display: block; margin-top: 6px; font-size: 13px; color: var(--text-muted); }
+
+/* Serviços */
+.svc { display: flex; gap: 12px; height: clamp(460px, 44vw, 540px); margin-top: 48px; }
+.panel { position: relative; flex: 1 1 0; min-width: 0; overflow: hidden; border-radius: var(--radius); background: var(--ink-900); color: #fff; transition: flex-grow 760ms var(--ease-out); isolation: isolate; }
+.panel.on { flex-grow: 3.4; }
+.panel .bg, .panel .bg2 { position: absolute; inset: 0; z-index: -3; background-repeat: no-repeat; background-size: auto 190%; background-position: var(--px, 50%) 92%; }
+.panel .bg { background-image: url(assets/frota-patio.jpg), var(--gradient-photo); background-blend-mode: luminosity, normal; background-size: auto 190%, cover; }
+.panel .bg2 { background-image: url(assets/frota-patio.jpg); opacity: 0; transition: opacity 600ms var(--ease); z-index: -2; }
+.panel.on .bg2 { opacity: 1; }
+.panel .scrim { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(20,22,26,.25) 0%, rgba(20,22,26,.1) 35%, rgba(20,22,26,.9) 100%); }
+.panel-tg { position: absolute; inset: 0; width: 100%; background: none; border: 0; cursor: pointer; text-align: left; padding: 24px 22px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; }
+.panel-tg svg { width: 30px; height: 30px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 500ms var(--ease-out), stroke 300ms; }
+.panel:hover .panel-tg svg { transform: translateY(-3px) scale(1.08); }
+.panel.on .panel-tg svg { stroke: var(--red-400); }
+.panel-name { font-weight: 800; font-stretch: 110%; font-size: 20px; letter-spacing: -.01em; line-height: 1.1; writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; transition: opacity 260ms var(--ease); }
+.panel.on .panel-name { opacity: 0; pointer-events: none; }
+.panel-body { position: absolute; left: 0; right: 0; bottom: 0; padding: 0 clamp(20px, 3vw, 36px) clamp(22px, 3vw, 34px); display: flex; flex-direction: column; gap: 14px; align-items: flex-start; opacity: 0; transform: translateY(24px); pointer-events: none; transition: opacity 300ms var(--ease), transform 500ms var(--ease-out); }
+.panel.on .panel-body { opacity: 1; transform: none; pointer-events: auto; transition-delay: 260ms; }
+.panel-body h3 { font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.05; font-weight: 800; font-stretch: 110%; letter-spacing: -.02em; color: #fff; }
+.panel-body p { font-size: 16px; color: rgba(255,255,255,.86); max-width: 44ch; }
+.panel .panel-tg { z-index: 1; }
+.panel.on .panel-tg { pointer-events: none; height: 84px; inset: 0 0 auto 0; width: auto; }
+
+/* Atuação */
+.net { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(32px, 6vw, 80px); align-items: center; }
+.net-l { display: flex; flex-direction: column; gap: 28px; }
+.uf-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.uf {
+  position: relative; background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius); padding: 16px 8px; cursor: pointer; text-align: center; overflow: hidden;
+  font-weight: 800; font-stretch: 110%; font-size: 22px; color: var(--text-strong); letter-spacing: -.01em; transition: color 220ms var(--ease), border-color 220ms var(--ease);
+  isolation: isolate;
+}
+.uf::before { content: ""; position: absolute; inset: 0 -20px; background: var(--red-500); transform: var(--slant) translateX(-120%); transition: transform 380ms var(--ease-out); z-index: -1; }
+.uf:hover, .uf.on { color: #fff; border-color: var(--red-500); }
+.uf:hover::before, .uf.on::before { transform: var(--slant) translateX(0); }
+.uf-name { min-height: 1.6em; font-size: 15px; color: var(--text-muted); }
+.uf-name b { color: var(--text-strong); font-weight: 800; }
+.map { position: relative; background: var(--ink-900); border-radius: var(--radius); padding: 12px; overflow: hidden; }
+.map svg { display: block; width: 100%; height: auto; max-height: 620px; }
+.map .dots { fill: #2a2e35; }
+.map .route { fill: none; stroke: #5a616b; stroke-width: 1.5; stroke-dasharray: 3 7; animation: flow 1.6s linear infinite; transition: stroke 260ms, stroke-width 260ms, stroke-opacity 260ms; }
+.map .route.hot { stroke: var(--red-400); stroke-width: 2.5; }
+.map.focus .route:not(.hot) { stroke-opacity: .25; }
+@keyframes flow { to { stroke-dashoffset: -20; } }
+.map .node circle.c { fill: #14161a; stroke: #c3c8ce; stroke-width: 2; transition: fill 220ms, stroke 220ms, r 220ms; }
+.map .node text { fill: #c3c8ce; font: 800 13px var(--font); font-stretch: 110%; transition: fill 220ms; }
+.map .node { cursor: pointer; }
+.map .node.on circle.c, .map .node:hover circle.c { fill: var(--red-500); stroke: #fff; }
+.map .node.on text, .map .node:hover text { fill: #fff; }
+.map .hub circle.c { fill: var(--red-500); stroke: #fff; }
+.map .hub .ring { fill: none; stroke: var(--red-400); stroke-width: 2; transform-box: fill-box; transform-origin: center; animation: ring 2.4s ease-out infinite; }
+.map .hub text.lab { fill: #fff; font: 700 11px var(--font); font-stretch: 100%; letter-spacing: .02em; }
+@keyframes ring { from { transform: scale(.6); opacity: .9; } to { transform: scale(2.4); opacity: 0; } }
+.map .cap { position: absolute; left: 20px; bottom: 16px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: #868d97; }
+
+/* CTA band */
+.band { position: relative; background: var(--red-500); color: #fff; padding-block: clamp(56px, 8vw, 96px); overflow: hidden; }
+.band .wrap { display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: space-between; }
+.band h2 { font-size: clamp(2rem, 4.6vw, 3.6rem); line-height: 1.04; max-width: 20ch; text-wrap: balance; }
+
+/* Contato */
+.contact { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(28px, 5vw, 64px); align-items: start; margin-top: 48px; }
+.card { background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius); }
+.card.raised { box-shadow: var(--shadow-lg); padding: clamp(20px, 3.4vw, 40px); }
+.card.acc { position: relative; padding: 24px; overflow: hidden; }
+.card.acc::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 4px; background: var(--red-500); transform-origin: left; transform: scaleX(.18); transition: transform 500ms var(--ease-out); }
+.card.acc:hover::before { transform: scaleX(1); }
+.form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.form .full { grid-column: 1 / -1; }
+.form h3 { font-size: 24px; line-height: 1.15; color: var(--text-strong); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.chip { position: relative; }
+.chip input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.chip span { display: inline-block; padding: 9px 16px; border: 1px solid var(--border-default); border-radius: var(--radius); font-size: 13px; font-weight: 700; font-stretch: 110%; letter-spacing: .04em; text-transform: uppercase; color: var(--text-strong); transition: background 200ms var(--ease), color 200ms var(--ease), border-color 200ms var(--ease); }
+.chip input:checked + span { background: var(--ink-900); color: #fff; border-color: var(--ink-900); }
+:root[data-theme="dark"] .chip input:checked + span { background: var(--red-500); border-color: var(--red-500); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .chip input:checked + span { background: var(--red-500); border-color: var(--red-500); } }
+.chip input:focus-visible + span { outline: 2px solid var(--red-500); outline-offset: 2px; }
+.chip span:hover { border-color: var(--red-500); }
+.field { position: relative; }
+.field input, .field select, .field textarea {
+  width: 100%; background: var(--field-bg); color: var(--text-strong); border: 1px solid var(--border-default); border-radius: var(--radius);
+  padding: 24px 14px 8px; font: 400 16px/1.4 var(--font); min-height: 56px; appearance: none; transition: border-color 140ms var(--ease), box-shadow 140ms var(--ease);
+}
+.field textarea { resize: vertical; min-height: 116px; }
+.field select { background-image: linear-gradient(45deg, transparent 50%, var(--text-muted) 50%), linear-gradient(135deg, var(--text-muted) 50%, transparent 50%); background-position: calc(100% - 20px) 26px, calc(100% - 14px) 26px; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 36px; }
+.field label { position: absolute; left: 14px; top: 18px; font-size: 16px; color: var(--text-muted); pointer-events: none; transform-origin: left top; transition: transform 200ms var(--ease), color 200ms var(--ease); }
+.field input:focus ~ label, .field input:not(:placeholder-shown) ~ label,
+.field textarea:focus ~ label, .field textarea:not(:placeholder-shown) ~ label,
+.field select ~ label { transform: translateY(-10px) scale(.75); }
+.field input:focus, .field select:focus, .field textarea:focus { outline: 0; border-color: var(--text-strong); box-shadow: var(--focus-ring); }
+.field.err input { border-color: var(--red-500); }
+.field .msg { display: none; margin-top: 6px; font-size: 13px; color: var(--accent-text); font-weight: 600; }
+.field.err .msg { display: block; }
+.form-foot { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; justify-content: space-between; }
+.form-foot small { color: var(--text-muted); font-size: 13px; }
+.done { display: none; flex-direction: column; gap: 14px; align-items: flex-start; padding: 24px 0; }
+.card.sent .form { display: none; }
+.card.sent .done { display: flex; }
+.done svg { width: 56px; height: 56px; }
+.done circle, .done path { fill: none; stroke: var(--green-500); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 160; stroke-dashoffset: 160; }
+.card.sent .done circle { animation: draw 700ms var(--ease-out) forwards; }
+.card.sent .done path { animation: draw 500ms 350ms var(--ease-out) forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.done h3 { font-size: 26px; color: var(--text-strong); }
+.done .note { font-size: 13px; color: var(--text-muted); max-width: 46ch; }
+.units { display: flex; flex-direction: column; gap: 16px; }
+.unit h3 { font-size: 20px; line-height: 1.2; color: var(--text-strong); display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.unit h3 svg { width: 20px; height: 20px; stroke: var(--red-500); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+.unit address { font-style: normal; font-size: 15px; color: var(--text-muted); display: flex; flex-direction: column; gap: 2px; margin-bottom: 14px; }
+.row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 0; border-top: 1px solid var(--border-subtle); font-size: 15px; color: var(--text-strong); font-variant-numeric: tabular-nums; }
+.row span { min-width: 0; overflow-wrap: anywhere; }
+.copy { flex-shrink: 0; display: inline-flex; align-items: center; gap: 6px; background: none; border: 1px solid var(--border-default); border-radius: var(--radius); padding: 6px 10px; cursor: pointer; font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--text-strong); transition: background 160ms, color 160ms, border-color 160ms; }
+.copy svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.copy:hover { background: var(--ink-900); color: #fff; border-color: var(--ink-900); }
+.copy.ok { background: var(--green-500); color: #fff; border-color: var(--green-500); }
+
+/* Footer */
+.ftr { background: var(--surface-inverse); color: rgba(255,255,255,.72); padding-block: 56px 32px; }
+.ftr .top { display: flex; flex-wrap: wrap; gap: 32px; justify-content: space-between; align-items: flex-start; padding-bottom: 32px; border-bottom: 1px solid #2a2e35; }
+.ftr img { height: 28px; width: auto; }
+.ftr p { max-width: 44ch; margin-top: 16px; font-size: 15px; }
+.social { display: flex; gap: 12px; }
+.social a { display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; border: 1px solid #434952; border-radius: var(--radius); color: #fff; text-decoration: none; font-size: 13px; font-weight: 700; font-stretch: 110%; letter-spacing: .04em; text-transform: uppercase; transition: background 200ms var(--ease), border-color 200ms var(--ease); }
+.social a:hover { background: var(--red-500); border-color: var(--red-500); }
+.social svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.ftr .bot { padding-top: 24px; font-size: 13px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 980px) {
+  .hdr nav { display: none; }
+  .burger { display: inline-flex; }
+  .stats .wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 32px; }
+  .story, .net, .contact { grid-template-columns: minmax(0, 1fr); }
+  .story-l { position: static; }
+}
+@media (max-width: 820px) {
+  .svc { flex-direction: column; height: auto; }
+  .panel { flex: none; height: 88px; transition: height 640ms var(--ease-out); }
+  .panel.on { height: 400px; }
+  .panel-name { writing-mode: horizontal-tb; transform: none; }
+  .panel-tg { flex-direction: row; align-items: center; height: 88px; padding: 0 20px; }
+  .panel.on .panel-tg { height: 88px; }
+  .panel .bg, .panel .bg2 { background-position: var(--px, 50%) 92%; }
+}
+@media (max-width: 560px) {
+  .founders { grid-template-columns: minmax(0, 1fr); }
+  .form { grid-template-columns: minmax(0, 1fr); }
+  .uf-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .hero-hint { display: none; }
+  .hero-gap { height: 44vw; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .marq-track, .map .route, .map .hub .ring, .hero-hint i { animation: none !important; }
+  .btn::before, .uf::before { transition: none; }
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a class="logo" href="#home" aria-label="Cadomar Transportadora, início"><img src="assets/logo-wordmark-white.png" alt="Cadomar" width="89" height="24"></a>
+    <nav aria-label="Principal">
+      <a class="nl" href="#home">Home</a>
+      <a class="nl" href="#empresa">Empresa</a>
+      <a class="nl" href="#servicos">Serviços</a>
+      <a class="nl" href="#atuacao">Atuação</a>
+      <a class="nl" href="#contato">Contato</a>
+      <span class="tel">(51) 3052-2666</span>
+      <a class="btn sm mag" href="#contato">Cotação</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
+    </button>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+<div class="menu" id="menu">
+  <a class="ml" href="#home">Home</a>
+  <a class="ml" href="#empresa">Empresa</a>
+  <a class="ml" href="#servicos">Serviços</a>
+  <a class="ml" href="#atuacao">Atuação</a>
+  <a class="ml" href="#contato">Contato</a>
+  <a class="btn" href="#contato">Solicitar cotação</a>
+</div>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-media" id="heroMedia">
+    <div class="hero-wash"><img src="assets/frota-patio.jpg" alt="Frota Cadomar no pátio da matriz, em Canoas/RS"></div>
+    <div class="hero-color" id="heroColor"><img src="assets/frota-patio.jpg" alt="" aria-hidden="true"></div>
+  </div>
+  <div class="hero-scrim"></div>
+  <div class="wrap hero-in">
+    <span class="plate" id="heroPlate"><span>Desde 1968</span></span>
+    <h1 class="disp" id="heroTitle">Referência em Transporte de Cargas, Logística e Armazenagem</h1>
+    <div class="hero-gap"></div>
+    <div class="hero-cta" id="heroCta">
+      <a class="btn mag" href="#contato">Solicitar cotação <svg><use href="#i-arrow"/></svg></a>
+      <a class="btn ghost mag" href="#servicos">Ver serviços</a>
+    </div>
+    <div class="hero-meta" id="heroMeta">
+      <span><b>Matriz</b>Canoas / RS</span>
+      <span><b>Filial</b>Itapecerica da Serra / SP</span>
+      <span><b>Atuação</b>RS · SC · PR · SP · MG · MT · MS · GO</span>
+    </div>
+  </div>
+  <div class="hero-hint" aria-hidden="true"><i></i>Passe o mouse sobre a foto</div>
+</section>
+
+<div class="marq" aria-hidden="true" id="marq">
+  <div class="marq-track" id="marqTrack">
+    <div class="marq-set"><span>Transporte de cargas</span><i></i><span>Logística</span><i></i><span>Armazenagem</span><i></i><span>RS SC PR SP MG MT MS GO</span><i></i></div>
+    <div class="marq-set"><span>Transporte de cargas</span><i></i><span>Logística</span><i></i><span>Armazenagem</span><i></i><span>RS SC PR SP MG MT MS GO</span><i></i></div>
+  </div>
+</div>
+
+<section class="stats" aria-label="A Cadomar em números">
+  <div class="wrap">
+    <div class="stat"><b data-count="1968" data-from="1900">1968</b><span>Primeira viagem</span></div>
+    <div class="stat"><b><span data-count="50">50</span><em>+</em></b><span>Anos na estrada</span></div>
+    <div class="stat"><b data-count="8">8</b><span>Estados atendidos</span></div>
+    <div class="stat"><b data-count="2">2</b><span>Unidades</span></div>
+  </div>
+</section>
+
+<section class="sec" id="empresa">
+  <div class="wrap story">
+    <div class="story-l">
+      <div class="sh">
+        <span class="overline"><span class="rule"></span>Quem somos</span>
+        <h2 class="disp" data-split>Três motoristas, uma transportadora</h2>
+        <p class="lead" data-fade>A Transportadora Cadomar foi para estrada pela primeira vez em 1968, quando três experientes motoristas, Geraldo Cadore, Zeferino Marin e Edelvino Marin fundaram a empresa, sediada em Canoas / RS.</p>
+      </div>
+      <figure class="photo" id="storyPhoto"><img src="assets/frota-patio.jpg" alt="Caminhão Cadomar com carroceria sider vermelha no pátio de Canoas"><figcaption>Pátio da matriz, Canoas / RS</figcaption></figure>
+    </div>
+    <div>
+      <div class="tl" id="tl">
+        <span class="tl-line"></span><span class="tl-fill" id="tlFill"></span>
+        <div class="tl-step" data-fade><span class="overline">1968</span><h3 class="disp">A primeira viagem</h3><p>Geraldo Cadore, Zeferino Marin e Edelvino Marin fundam a Cadomar em Canoas / RS. Os três já eram motoristas experientes.</p></div>
+        <div class="tl-step" data-fade><span class="overline">Primeiros anos</span><h3 class="disp">Poucos clientes, muito trabalho</h3><p>Com perseverança, competência e muito trabalho, os primeiros anos se passaram com poucos clientes e com a atuação dos sócios tanto à frente dos negócios quanto como motoristas.</p></div>
+        <div class="tl-step" data-fade><span class="overline">Hoje</span><h3 class="disp">Há mais de 50 anos no mercado</h3><p>Soluções de transporte de cargas, logística e armazenagem em 8 estados, a partir de duas unidades: Canoas / RS e Itapecerica da Serra / SP.</p></div>
+      </div>
+      <div class="founders" id="founders" style="margin-top:48px">
+        <div class="founder" data-fade><b>Geraldo Cadore</b><span>Sócio fundador, 1968</span></div>
+        <div class="founder" data-fade><b>Zeferino Marin</b><span>Sócio fundador, 1968</span></div>
+        <div class="founder" data-fade><b>Edelvino Marin</b><span>Sócio fundador, 1968</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sunken" id="servicos">
+  <div class="wrap">
+    <div class="sh">
+      <span class="overline"><span class="rule"></span>Serviços</span>
+      <h2 class="disp" data-split>Há mais de 50 anos no mercado</h2>
+      <p class="lead" data-fade>Soluções de transporte de cargas, logísticas e armazenagem.</p>
+    </div>
+    <div class="svc" id="svc" data-fade>
+      <article class="panel on" style="--px:55%" data-svc="Transporte de cargas">
+        <div class="bg"></div><div class="bg2"></div><div class="scrim"></div>
+        <button class="panel-tg" aria-expanded="true" aria-controls="p1">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6h12v10H2z"/><path d="M14 9h4l4 4v3h-8z"/><circle cx="6.5" cy="18" r="2"/><circle cx="17.5" cy="18" r="2"/></svg>
+          <span class="panel-name">Transporte de cargas</span>
+        </button>
+        <div class="panel-body" id="p1"><h3>Transporte de cargas</h3><p>Cargas fracionadas e lotação com frota própria, saindo de Canoas/RS e da filial de São Paulo.</p><a class="btn sm" href="#contato" data-pick="Transporte de cargas">Solicitar cotação</a></div>
+      </article>
+      <article class="panel" style="--px:92%" data-svc="Logística">
+        <div class="bg"></div><div class="bg2"></div><div class="scrim"></div>
+        <button class="panel-tg" aria-expanded="false" aria-controls="p2">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="5" r="2.5"/><path d="M8.5 19H17a4 4 0 0 0 0-8H7a4 4 0 0 1 0-8h8.5"/></svg>
+          <span class="panel-name">Logística</span>
+        </button>
+        <div class="panel-body" id="p2"><h3>Logística</h3><p>Soluções de coleta, distribuição e roteirização para indústria e comércio.</p><a class="btn sm" href="#contato" data-pick="Logística">Solicitar cotação</a></div>
+      </article>
+      <article class="panel" style="--px:4%" data-svc="Armazenagem">
+        <div class="bg"></div><div class="bg2"></div><div class="scrim"></div>
+        <button class="panel-tg" aria-expanded="false" aria-controls="p3">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V9l9-5 9 5v12"/><path d="M7 21v-8h10v8"/><path d="M7 17h10"/></svg>
+          <span class="panel-name">Armazenagem</span>
+        </button>
+        <div class="panel-body" id="p3"><h3>Armazenagem</h3><p>Estrutura própria para guarda e movimentação de mercadorias.</p><a class="btn sm" href="#contato" data-pick="Armazenagem">Solicitar cotação</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="atuacao">
+  <div class="wrap net">
+    <div class="net-l">
+      <div class="sh">
+        <span class="overline"><span class="rule"></span>Atuação</span>
+        <h2 class="disp" data-split>Atualmente trabalhamos nos Estados</h2>
+      </div>
+      <div class="uf-grid" id="ufGrid" role="group" aria-label="Estados atendidos"></div>
+      <p class="uf-name" id="ufName" aria-live="polite">Passe o mouse ou toque em um estado.</p>
+    </div>
+    <div class="map" id="map" data-fade>
+      <svg viewBox="0 0 400 480" role="img" aria-label="Esquema das rotas saindo de Canoas/RS e de Itapecerica da Serra/SP para os oito estados atendidos" id="mapSvg">
+        <g class="dots" id="mapDots"></g>
+        <g id="mapRoutes"></g>
+        <g id="mapNodes"></g>
+      </svg>
+      <span class="cap">Esquema ilustrativo, sem escala</span>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="band">
+  <div class="wrap">
+    <h2 class="disp" data-split>Ter compromisso com o negócio do nosso cliente!</h2>
+    <a class="btn inverse mag" href="#contato">Falar com a Cadomar <svg><use href="#i-arrow"/></svg></a>
+  </div>
+</section>
+
+<section class="sec sunken" id="contato">
+  <div class="wrap">
+    <div class="sh">
+      <span class="overline"><span class="rule"></span>Contato</span>
+      <h2 class="disp" data-split>Fale com a Cadomar</h2>
+      <p class="lead" data-fade>Disponibilizamos vários canais de comunicação, sempre procurando o máximo de agilidade nos atendimentos.</p>
+    </div>
+    <div class="contact">
+      <div class="card raised" id="formCard" data-fade>
+        <form class="form" id="form" novalidate>
+          <div class="full">
+            <h3 class="disp">Conte sobre a sua carga</h3>
+            <div class="chips" role="radiogroup" aria-label="Serviço de interesse" id="chips">
+              <label class="chip"><input type="radio" name="servico" value="Transporte de cargas" checked><span>Transporte de cargas</span></label>
+              <label class="chip"><input type="radio" name="servico" value="Logística"><span>Logística</span></label>
+              <label class="chip"><input type="radio" name="servico" value="Armazenagem"><span>Armazenagem</span></label>
+            </div>
+          </div>
+          <div class="field" id="f-nome"><input id="nome" name="nome" placeholder=" " autocomplete="name" required><label for="nome">Nome</label><span class="msg">Informe seu nome.</span></div>
+          <div class="field"><input id="empresa" name="empresa" placeholder=" " autocomplete="organization"><label for="empresa">Empresa</label></div>
+          <div class="field" id="f-email"><input id="email" name="email" type="email" placeholder=" " autocomplete="email" required><label for="email">E-mail</label><span class="msg">Informe um e-mail válido, como nome@empresa.com.br.</span></div>
+          <div class="field"><input id="tel" name="tel" type="tel" placeholder=" " autocomplete="tel"><label for="tel">Telefone</label></div>
+          <div class="field"><select id="origem" name="origem"><option value="" selected></option></select><label for="origem">Origem</label></div>
+          <div class="field"><select id="destino" name="destino"><option value="" selected></option></select><label for="destino">Destino</label></div>
+          <div class="field full"><textarea id="msg" name="msg" placeholder=" " rows="4"></textarea><label for="msg">Tipo de carga, peso, prazo desejado</label></div>
+          <div class="full form-foot"><small>Retorno em até 1 dia útil.</small><button class="btn mag" type="submit">Enviar solicitação <svg><use href="#i-arrow"/></svg></button></div>
+        </form>
+        <div class="done" role="status">
+          <svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="25"/><path d="M17 29l8 8 15-17"/></svg>
+          <h3 class="disp">Solicitação enviada</h3>
+          <p>Retornamos em até 1 dia útil.</p>
+          <p class="note">Demonstração do novo site: este formulário ainda não está ligado ao e-mail da Cadomar.</p>
+          <button class="btn sm" type="button" id="again" style="background:transparent;color:var(--text-strong);border-color:var(--border-strong,var(--text-strong))">Enviar outra</button>
+        </div>
+      </div>
+      <div class="units">
+        <div class="card acc unit" data-fade>
+          <h3 class="disp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Matriz Canoas</h3>
+          <address><span>Rua Berto Círio, 1088, São Luiz</span><span>Canoas / RS</span></address>
+          <div class="row"><span>(51) 3052-2666</span><button class="copy" data-copy="(51) 3052-2666"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>Copiar</button></div>
+          <div class="row"><span>cadomar@cadomar.com.br</span><button class="copy" data-copy="cadomar@cadomar.com.br"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>Copiar</button></div>
+        </div>
+        <div class="card acc unit" data-fade>
+          <h3 class="disp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Filial São Paulo</h3>
+          <address><span>Rod. Régis Bittencourt, 294, Sala 06</span><span>Itapecerica da Serra / SP</span></address>
+          <div class="row"><span>(11) 4668-1052</span><button class="copy" data-copy="(11) 4668-1052"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>Copiar</button></div>
+          <div class="row"><span>saopaulo@cadomar.com.br</span><button class="copy" data-copy="saopaulo@cadomar.com.br"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>Copiar</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="top">
+      <div><img src="assets/logo-wordmark-white.png" alt="Cadomar" width="104" height="28"><p>Transporte de cargas, logística e armazenagem desde 1968. Canoas/RS e Itapecerica da Serra/SP.</p></div>
+      <div class="social">
+        <a href="https://www.instagram.com/cadomar_transp/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>Instagram</a>
+        <a href="https://www.facebook.com/transportadoracadomar" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z"/></svg>Facebook</a>
+      </div>
+    </div>
+    <div class="bot"><span>© 2026 Transportadora Cadomar</span><span>Rua Berto Círio, 1088, São Luiz, Canoas / RS</span></div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var hasG = !!(window.gsap && window.ScrollTrigger);
+  var anim = hasG && !reduce;
+  if (hasG) gsap.registerPlugin(ScrollTrigger);
+
+  /* ---------- Data ---------- */
+  var UFS = [
+    { c: 'RS', n: 'Rio Grande do Sul', x: 170, y: 430 }, { c: 'SC', n: 'Santa Catarina', x: 218, y: 376 },
+    { c: 'PR', n: 'Paraná', x: 188, y: 318 }, { c: 'SP', n: 'São Paulo', x: 250, y: 250 },
+    { c: 'MG', n: 'Minas Gerais', x: 302, y: 176 }, { c: 'MT', n: 'Mato Grosso', x: 112, y: 112 },
+    { c: 'MS', n: 'Mato Grosso do Sul', x: 130, y: 232 }, { c: 'GO', n: 'Goiás', x: 214, y: 148 }
+  ];
+  var ROUTES = [['RS','SC'],['RS','PR'],['RS','MS'],['RS','SP'],['SP','PR'],['SP','MG'],['SP','GO'],['SP','MT'],['SP','MS']];
+  var byC = {}; UFS.forEach(function (u) { byC[u.c] = u; });
+
+  /* ---------- Selects + UF chips ---------- */
+  ['origem', 'destino'].forEach(function (id) {
+    var s = document.getElementById(id);
+    UFS.forEach(function (u) { var o = document.createElement('option'); o.value = u.c; o.textContent = u.c + ' · ' + u.n; s.appendChild(o); });
+  });
+  var grid = $('#ufGrid');
+  UFS.forEach(function (u) {
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'uf'; b.dataset.uf = u.c; b.textContent = u.c;
+    b.setAttribute('aria-label', u.n); grid.appendChild(b);
+  });
+
+  /* ---------- Network map ---------- */
+  var NS = 'http://www.w3.org/2000/svg';
+  function el(tag, attrs, parent) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+  var dots = $('#mapDots');
+  for (var gx = 20; gx < 400; gx += 20) for (var gy = 20; gy < 480; gy += 20) el('circle', { cx: gx, cy: gy, r: 1.2 }, dots);
+  var routesG = $('#mapRoutes'), nodesG = $('#mapNodes'), routeEls = [], nodeEls = {};
+  ROUTES.forEach(function (r, i) {
+    var a = byC[r[0]], b = byC[r[1]], mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+    var dx = b.x - a.x, dy = b.y - a.y, len = Math.sqrt(dx * dx + dy * dy) || 1, bend = 18 * (i % 2 ? 1 : -1);
+    var cx = mx - dy / len * bend, cy = my + dx / len * bend;
+    var p = el('path', { d: 'M' + a.x + ' ' + a.y + ' Q' + cx + ' ' + cy + ' ' + b.x + ' ' + b.y, class: 'route', id: 'rt' + i }, routesG);
+    p.dataset.a = r[0]; p.dataset.b = r[1]; routeEls.push(p);
+  });
+  UFS.forEach(function (u) {
+    var hub = u.c === 'RS' || u.c === 'SP';
+    var g = el('g', { class: 'node' + (hub ? ' hub' : ''), transform: 'translate(' + u.x + ' ' + u.y + ')', tabindex: 0, role: 'button', 'aria-label': u.n }, nodesG);
+    g.dataset.uf = u.c;
+    if (hub) el('circle', { class: 'ring', r: 10 }, g);
+    el('circle', { class: 'c', r: hub ? 9 : 7 }, g);
+    var t = el('text', { x: hub ? 0 : 13, y: hub ? -16 : 5, 'text-anchor': hub ? 'middle' : 'start' }, g); t.textContent = u.c;
+    if (hub) {
+      var l = el('text', { class: 'lab', x: 0, y: 26, 'text-anchor': 'middle' }, g);
+      l.textContent = u.c === 'RS' ? 'Matriz · Canoas' : 'Filial · Itapecerica da Serra';
+      if (u.c === 'RS') l.setAttribute('y', 28);
+    }
+    nodeEls[u.c] = g;
+  });
+  if (!reduce) {
+    [0, 1, 2, 5, 6].forEach(function (i, k) {
+      var dot = el('circle', { r: 3.2, fill: '#fff' }, routesG);
+      var am = el('animateMotion', { dur: (3.4 + k * .7) + 's', repeatCount: 'indefinite', begin: (k * .6) + 's' }, dot);
+      el('mpath', { href: '#rt' + i }, am);
+    });
+  }
+  var ufName = $('#ufName'), mapEl = $('#map');
+  function focusUF(c) {
+    $$('.uf').forEach(function (b) { b.classList.toggle('on', b.dataset.uf === c); });
+    Object.keys(nodeEls).forEach(function (k) { nodeEls[k].classList.toggle('on', k === c); });
+    routeEls.forEach(function (p) { p.classList.toggle('hot', !!c && (p.dataset.a === c || p.dataset.b === c)); });
+    mapEl.classList.toggle('focus', !!c);
+    if (c) {
+      var u = byC[c], note = c === 'RS' ? ' · Matriz em Canoas' : c === 'SP' ? ' · Filial em Itapecerica da Serra' : '';
+      ufName.innerHTML = '<b>' + c + '</b> ' + u.n + note;
+    } else ufName.textContent = 'Passe o mouse ou toque em um estado.';
+  }
+  $$('.uf').forEach(function (b) {
+    b.addEventListener('mouseenter', function () { focusUF(b.dataset.uf); });
+    b.addEventListener('focus', function () { focusUF(b.dataset.uf); });
+    b.addEventListener('click', function () { focusUF(b.dataset.uf); });
+    b.addEventListener('mouseleave', function () { focusUF(null); });
+  });
+  Object.keys(nodeEls).forEach(function (k) {
+    var n = nodeEls[k];
+    n.addEventListener('mouseenter', function () { focusUF(k); });
+    n.addEventListener('focus', function () { focusUF(k); });
+    n.addEventListener('click', function () { focusUF(k); });
+    n.addEventListener('mouseleave', function () { focusUF(null); });
+  });
+
+  /* ---------- Header ---------- */
+  var hdr = $('#hdr'), prog = $('#progress'), lastY = 0;
+  function onScroll() {
+    var y = window.scrollY, max = document.documentElement.scrollHeight - window.innerHeight;
+    prog.style.transform = 'scaleX(' + (max > 0 ? y / max : 0) + ')';
+    hdr.classList.toggle('solid', y > 40);
+    if (y > 300 && y > lastY + 4 && !$('#menu').classList.contains('open')) hdr.classList.add('hide');
+    else if (y < lastY - 4 || y < 300) hdr.classList.remove('hide');
+    lastY = y;
+  }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  var burger = $('#burger'), menu = $('#menu');
+  function setMenu(o) { menu.classList.toggle('open', o); burger.setAttribute('aria-expanded', o); burger.setAttribute('aria-label', o ? 'Fechar menu' : 'Abrir menu'); document.body.style.overflow = o ? 'hidden' : ''; }
+  burger.addEventListener('click', function () { setMenu(!menu.classList.contains('open')); });
+  $$('#menu a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+  var links = $$('.hdr a.nl');
+  var spy = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) links.forEach(function (l) { l.classList.toggle('on', l.getAttribute('href') === '#' + e.target.id); }); });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  ['home', 'empresa', 'servicos', 'atuacao', 'contato'].forEach(function (id) { spy.observe(document.getElementById(id)); });
+
+  /* ---------- Hero spotlight ---------- */
+  var hero = $('#home'), hc = $('#heroColor');
+  var cur = { x: 0.68, y: 0.72, r: 0 }, tgt = { x: 0.68, y: 0.72, r: 250 }, lastMove = 0, inside = false, W = 1, H = 1;
+  function measure() { var b = hero.getBoundingClientRect(); W = b.width; H = b.height; }
+  measure(); window.addEventListener('resize', measure);
+  function paint() { hc.style.setProperty('--mx', (cur.x * W) + 'px'); hc.style.setProperty('--my', (cur.y * H) + 'px'); hc.style.setProperty('--r', cur.r + 'px'); }
+  if (reduce) { cur.r = 0; hc.style.display = 'none'; }
+  else {
+    hero.addEventListener('pointermove', function (e) {
+      if (e.pointerType === 'touch') return;
+      var b = hero.getBoundingClientRect(); tgt.x = (e.clientX - b.left) / b.width; tgt.y = (e.clientY - b.top) / b.height; lastMove = performance.now(); inside = true; tgt.r = 280;
+    });
+    hero.addEventListener('pointerleave', function () { inside = false; tgt.r = 250; });
+    var t0 = performance.now(), introDone = false;
+    (function loop(now) {
+      var t = (now - t0) / 1000, idle = !inside || now - lastMove > 2600;
+      if (idle) { tgt.x = 0.66 + 0.14 * Math.sin(t * .7); tgt.y = 0.70 + 0.06 * Math.cos(t * 1.1); }
+      var k = introDone ? 0.12 : 0.05;
+      cur.x += (tgt.x - cur.x) * k; cur.y += (tgt.y - cur.y) * k; cur.r += ((t < .5 ? 0 : tgt.r) - cur.r) * 0.06;
+      if (t > 1.6) introDone = true;
+      paint(); requestAnimationFrame(loop);
+    })(t0);
+  }
+
+  /* ---------- Word split ---------- */
+  function split(e) {
+    var txt = e.textContent.trim(); e.setAttribute('aria-label', txt);
+    e.innerHTML = txt.split(/\s+/).map(function (w) { return '<span class="w" aria-hidden="true"><span class="wi">' + w + '</span></span>'; }).join(' ');
+    return $$('.wi', e);
+  }
+  var heroWords = split($('#heroTitle'));
+  var splits = $$('[data-split]').map(function (e) { return { e: e, w: split(e) }; });
+
+  /* ---------- GSAP animation ---------- */
+  if (anim) {
+    var tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+    tl.from('#heroMedia', { scale: 1.14, duration: 2.2, ease: 'power3.out' }, 0)
+      .from('#heroPlate', { x: -60, opacity: 0, duration: .8 }, .15)
+      .from(heroWords, { yPercent: 115, duration: 1, stagger: .07 }, .25)
+      .from('#heroCta', { y: 24, opacity: 0, duration: .8 }, .8)
+      .from('#heroMeta', { opacity: 0, y: 16, duration: .8 }, 1.05)
+      .from('.hdr .wrap', { y: -28, opacity: 0, duration: .8 }, .4);
+
+    gsap.to('#heroMedia', { yPercent: 9, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
+
+    splits.forEach(function (s) {
+      gsap.from(s.w, { yPercent: 115, duration: .9, stagger: .06, ease: 'power4.out', scrollTrigger: { trigger: s.e, start: 'top 88%', once: true } });
+    });
+    $$('[data-fade]').forEach(function (e) {
+      gsap.from(e, { y: 36, opacity: 0, duration: .9, ease: 'power3.out', scrollTrigger: { trigger: e, start: 'top 92%', once: true } });
+    });
+    gsap.from('.overline .rule', { scaleX: 0, duration: .8, ease: 'power3.out', stagger: .1, scrollTrigger: { trigger: '#empresa', start: 'top 80%', once: true } });
+
+    $$('[data-count]').forEach(function (e) {
+      var end = +e.dataset.count, from = +(e.dataset.from || 0), o = { v: from };
+      e.textContent = from;
+      gsap.to(o, { v: end, duration: 1.8, ease: 'power2.out', onUpdate: function () { e.textContent = Math.round(o.v); }, scrollTrigger: { trigger: e, start: 'top 92%', once: true } });
+    });
+
+    var ph = $('#storyPhoto');
+    gsap.fromTo(ph, { clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0)', duration: 1.3, ease: 'power4.inOut', scrollTrigger: { trigger: ph, start: 'top 85%', once: true } });
+    gsap.to('#storyPhoto img', { yPercent: -8, ease: 'none', scrollTrigger: { trigger: ph, start: 'top bottom', end: 'bottom top', scrub: true } });
+
+    gsap.to('#tlFill', { scaleY: 1, ease: 'none', scrollTrigger: { trigger: '#tl', start: 'top 60%', end: 'bottom 60%', scrub: true } });
+    $$('.tl-step').forEach(function (s) {
+      ScrollTrigger.create({ trigger: s, start: 'top 60%', end: 'bottom 60%', toggleClass: { targets: s, className: 'on' } });
+    });
+
+    gsap.from('.uf', { y: 20, opacity: 0, duration: .6, stagger: .05, ease: 'power3.out', scrollTrigger: { trigger: '#ufGrid', start: 'top 90%', once: true } });
+    gsap.from('#mapRoutes .route', { opacity: 0, duration: .6, stagger: .08, scrollTrigger: { trigger: '#map', start: 'top 80%', once: true } });
+    gsap.from('#mapNodes .node', { scale: 0, transformOrigin: '50% 50%', opacity: 0, duration: .5, stagger: .07, ease: 'back.out(2)', scrollTrigger: { trigger: '#map', start: 'top 80%', once: true } });
+
+    gsap.fromTo('#band', { clipPath: 'polygon(0% 0%, 0% 0%, -14% 100%, 0% 100%)' }, { clipPath: 'polygon(0% 0%, 114% 0%, 100% 100%, 0% 100%)', duration: 1.1, ease: 'power3.inOut', clearProps: 'clipPath', scrollTrigger: { trigger: '#band', start: 'top 85%', once: true } });
+
+    /* marquee driven by scroll velocity */
+    var track = $('#marqTrack'), mx = 0, dir = -1, base = 1.2, boost = 0, setW = 0;
+    var sets = $$('.marq-set'); function mw() { setW = sets[0].offsetWidth; } mw(); window.addEventListener('resize', mw);
+    var lastS = window.scrollY;
+    gsap.ticker.add(function () {
+      var dy = window.scrollY - lastS; lastS = window.scrollY;
+      boost += (Math.min(Math.abs(dy), 60) * .35 - boost) * .1;
+      if (dy) dir = dy > 0 ? -1 : 1;
+      mx += dir * (base + boost);
+      if (mx <= -setW) mx += setW; if (mx > 0) mx -= setW;
+      track.style.transform = 'translate3d(' + mx + 'px,0,0)';
+    });
+  } else {
+    /* no animation: still show the marquee static and counters at rest */
+  }
+
+  /* ---------- Marquee fallback (CSS) ---------- */
+  if (!anim && !reduce) { var tr = $('#marqTrack'); tr.style.animation = 'mq 30s linear infinite'; var st = document.createElement('style'); st.textContent = '@keyframes mq{to{transform:translateX(-50%)}}'; document.head.appendChild(st); }
+
+  /* ---------- Magnetic buttons ---------- */
+  if (fine && !reduce) {
+    $$('.mag').forEach(function (b) {
+      b.addEventListener('pointermove', function (e) {
+        var r = b.getBoundingClientRect(), dx = (e.clientX - (r.left + r.width / 2)) * .22, dy = (e.clientY - (r.top + r.height / 2)) * .3;
+        b.style.transform = 'translate(' + dx + 'px,' + dy + 'px)';
+      });
+      b.addEventListener('pointerleave', function () { b.style.transition = 'transform 500ms cubic-bezier(.16,1,.3,1), box-shadow 220ms'; b.style.transform = ''; setTimeout(function () { b.style.transition = ''; }, 520); });
+    });
+    /* founders tilt */
+    $$('.founder').forEach(function (f) {
+      f.addEventListener('pointermove', function (e) {
+        var r = f.getBoundingClientRect(), px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5;
+        f.style.transform = 'perspective(600px) rotateX(' + (-py * 10) + 'deg) rotateY(' + (px * 12) + 'deg) translateY(-3px)';
+      });
+      f.addEventListener('pointerleave', function () { f.style.transition = 'transform 400ms cubic-bezier(.16,1,.3,1), box-shadow 220ms'; f.style.transform = ''; setTimeout(function () { f.style.transition = ''; }, 420); });
+    });
+  }
+
+  /* ---------- Service panels ---------- */
+  var panels = $$('.panel');
+  function openPanel(p) {
+    panels.forEach(function (q) { var on = q === p; q.classList.toggle('on', on); $('.panel-tg', q).setAttribute('aria-expanded', on); });
+  }
+  panels.forEach(function (p) {
+    if (fine) p.addEventListener('mouseenter', function () { openPanel(p); });
+    $('.panel-tg', p).addEventListener('click', function () { openPanel(p); });
+    $('.panel-tg', p).addEventListener('focus', function () { openPanel(p); });
+  });
+  $$('[data-pick]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      $$('#chips input').forEach(function (i) { i.checked = i.value === a.dataset.pick; });
+    });
+  });
+
+  /* ---------- Copy buttons ---------- */
+  $$('.copy').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var txt = b.dataset.copy, label = b.lastChild;
+      function ok() { b.classList.add('ok'); label.textContent = 'Copiado'; setTimeout(function () { b.classList.remove('ok'); label.textContent = 'Copiar'; }, 1600); }
+      function fallback() {
+        var span = b.previousElementSibling, r = document.createRange(); r.selectNodeContents(span);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      }
+      try { navigator.clipboard.writeText(txt).then(ok, fallback); } catch (e) { fallback(); }
+    });
+  });
+
+  /* ---------- Form ---------- */
+  var form = $('#form'), card = $('#formCard');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var nome = $('#nome'), email = $('#email'), bad = false;
+    var okName = nome.value.trim().length > 1, okMail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
+    $('#f-nome').classList.toggle('err', !okName); $('#f-email').classList.toggle('err', !okMail);
+    if (!okName) { nome.focus(); bad = true; } else if (!okMail) { email.focus(); bad = true; }
+    if (bad) return;
+    card.classList.add('sent');
+    if (anim) gsap.from('.done', { y: 16, opacity: 0, duration: .6, ease: 'power3.out' });
+  });
+  ['nome', 'email'].forEach(function (id) { document.getElementById(id).addEventListener('input', function () { this.parentNode.classList.remove('err'); }); });
+  $('#again').addEventListener('click', function () { form.reset(); card.classList.remove('sent'); });
+})();
+</script>
