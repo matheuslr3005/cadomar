@@ -108,7 +108,7 @@ button { font: inherit; color: inherit; }
 .hdr.solid { background: var(--ink-900); border-bottom-color: #2a2e35; }
 .hdr.hide { transform: translateY(-100%); }
 .hdr .wrap { height: 100%; display: flex; align-items: center; gap: 28px; }
-.hdr .logo img { height: 24px; width: auto; }
+.hdr .logo img { height: 36px; width: auto; display: block; }
 .hdr nav { margin-left: auto; display: flex; align-items: center; gap: 28px; }
 .hdr nav a.nl {
   position: relative; padding: 6px 0; text-decoration: none; color: rgba(255,255,255,.72);
@@ -171,6 +171,7 @@ button { font: inherit; color: inherit; }
 .stats .wrap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
 .stat { display: flex; flex-direction: column; gap: 6px; padding-left: 20px; border-left: 3px solid var(--red-500); }
 .stat b { font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1; font-weight: 800; font-stretch: 110%; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.stat b span { font: inherit; letter-spacing: inherit; text-transform: none; color: inherit; }
 .stat b em { font-style: normal; color: var(--red-400); }
 .stat span { font-size: 12px; font-weight: 700; font-stretch: 110%; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.72); }
 
@@ -372,7 +373,7 @@ button { font: inherit; color: inherit; }
 
 <header class="hdr" id="hdr">
   <div class="wrap">
-    <a class="logo" href="#home" aria-label="Cadomar Transportadora, início"><img src="assets/logo-wordmark-white.png" alt="Cadomar" width="89" height="24"></a>
+    <a class="logo" href="#home" aria-label="Cadomar Transportadora, início"><img src="assets/logo-cadomar-novo.png" alt="Cadomar" width="120" height="36"></a>
     <nav aria-label="Principal">
       <a class="nl" href="#home">Home</a>
       <a class="nl" href="#empresa">Empresa</a>
