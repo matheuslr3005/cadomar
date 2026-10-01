@@ -334,6 +334,55 @@ button { font: inherit; color: inherit; }
 .social svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .ftr .bot { padding-top: 24px; font-size: 13px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
 
+/* ---------- Rastreio ---------- */
+.trk-card { margin-top: 40px; }
+.trk-form { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: start; }
+.trk-form .field input { text-transform: uppercase; letter-spacing: .06em; font-variant-numeric: tabular-nums; }
+.trk-hint { margin-top: 12px; font-size: 13px; color: var(--text-muted); }
+.trk-hint button { background: none; border: 0; padding: 0; cursor: pointer; font: inherit; font-weight: 700; color: var(--accent-text); text-decoration: underline; }
+.trk-res { margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--border-subtle); }
+.trk-res[hidden] { display: none; }
+.trk-top { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; }
+.trk-code { font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); }
+.trk-code b { display: block; margin-top: 2px; font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: .04em; color: var(--text-strong); font-stretch: 110%; font-weight: 800; }
+.trk-badge { display: inline-block; margin-right: 10px; transform: var(--slant); padding: 8px 18px; background: var(--red-500); color: #fff; }
+.trk-badge span { display: inline-block; transform: var(--unslant); font-size: 13px; font-weight: 800; font-stretch: 110%; letter-spacing: .08em; text-transform: uppercase; }
+.trk-badge.is-fin { background: var(--green-500); }
+.trk-route { display: flex; align-items: center; gap: 16px; margin: 28px 0 8px; color: var(--text-strong); font-weight: 800; font-stretch: 110%; font-size: clamp(1.05rem, 2.2vw, 1.4rem); }
+.trk-route i { flex: 1; min-width: 28px; height: 3px; background: var(--border-default); position: relative; }
+.trk-route i::after { content: ""; position: absolute; right: -2px; top: -4px; border: 5px solid transparent; border-left: 8px solid var(--border-default); }
+.trk-steps { list-style: none; margin: 28px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; position: relative; }
+.trk-steps li { position: relative; padding-top: 30px; font-size: 13px; font-weight: 700; font-stretch: 110%; letter-spacing: .04em; text-transform: uppercase; color: var(--text-muted); }
+.trk-steps li::before { content: ""; position: absolute; left: 0; top: 0; width: 18px; height: 18px; border-radius: 50%; background: var(--surface-card); border: 3px solid var(--border-default); z-index: 1; }
+.trk-steps li::after { content: ""; position: absolute; left: 18px; right: -8px; top: 8px; height: 3px; background: var(--border-default); }
+.trk-steps li:last-child::after { display: none; }
+.trk-steps li.ok { color: var(--text-strong); }
+.trk-steps li.ok::before { background: var(--red-500); border-color: var(--red-500); }
+.trk-steps li.ok::after { background: var(--red-500); }
+.trk-steps li.now::before { box-shadow: 0 0 0 5px rgba(218,37,28,.22); }
+.trk-steps li.ok.fin::before { background: var(--green-500); border-color: var(--green-500); }
+.trk-meta { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 32px 0 0; }
+.trk-meta div { padding: 14px 16px; background: var(--surface-sunken); border-left: 3px solid var(--red-500); }
+.trk-meta dt { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); }
+.trk-meta dd { margin: 2px 0 0; font-weight: 700; color: var(--text-strong); }
+.trk-h { margin: 32px 0 4px; font-size: 18px; color: var(--text-strong); }
+.trk-ev { list-style: none; margin: 0; padding: 0; }
+.trk-ev li { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 4px 20px; padding: 14px 0; border-top: 1px solid var(--border-subtle); }
+.trk-ev time { font-size: 14px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.trk-ev b { display: block; color: var(--text-strong); }
+.trk-ev small { font-size: 14px; color: var(--text-muted); }
+.trk-ev li:first-child b::before { content: "Último: "; color: var(--accent-text); }
+.trk-err { display: flex; flex-direction: column; gap: 8px; }
+.trk-err h3 { font-size: 22px; color: var(--text-strong); }
+.trk-note { margin-top: 24px; font-size: 12px; color: var(--text-muted); }
+@media (max-width: 560px) {
+  .trk-form { grid-template-columns: minmax(0, 1fr); }
+  .trk-form .btn { width: 100%; }
+  .trk-meta { grid-template-columns: minmax(0, 1fr); }
+  .trk-ev li { grid-template-columns: minmax(0, 1fr); }
+  .trk-steps li { font-size: 10px; letter-spacing: .02em; }
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 980px) {
   .hdr nav { display: none; }
@@ -378,6 +427,7 @@ button { font: inherit; color: inherit; }
       <a class="nl" href="#home">Home</a>
       <a class="nl" href="#empresa">Empresa</a>
       <a class="nl" href="#servicos">Serviços</a>
+      <a class="nl" href="#rastreio">Rastreio</a>
       <a class="nl" href="#atuacao">Atuação</a>
       <a class="nl" href="#contato">Contato</a>
       <span class="tel">(51) 3052-2666</span>
@@ -393,6 +443,7 @@ button { font: inherit; color: inherit; }
   <a class="ml" href="#home">Home</a>
   <a class="ml" href="#empresa">Empresa</a>
   <a class="ml" href="#servicos">Serviços</a>
+  <a class="ml" href="#rastreio">Rastreio</a>
   <a class="ml" href="#atuacao">Atuação</a>
   <a class="ml" href="#contato">Contato</a>
   <a class="btn" href="#contato">Solicitar cotação</a>
@@ -496,6 +547,24 @@ button { font: inherit; color: inherit; }
         </button>
         <div class="panel-body" id="p3"><h3>Armazenagem</h3><p>Estrutura própria para guarda e movimentação de mercadorias.</p><a class="btn sm" href="#contato" data-pick="Armazenagem">Solicitar cotação</a></div>
       </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec sunken" id="rastreio">
+  <div class="wrap">
+    <div class="sh">
+      <span class="overline"><span class="rule"></span>Rastreio</span>
+      <h2 class="disp" data-split>Acompanhe a sua carga</h2>
+      <p class="lead" data-fade>Digite o código de rastreio informado pela Cadomar e veja onde está o seu envio.</p>
+    </div>
+    <div class="card raised trk-card" data-fade>
+      <form class="trk-form" id="trkForm" novalidate>
+        <div class="field" id="f-trk"><input id="trkCode" name="codigo" placeholder=" " autocomplete="off" autocapitalize="characters" spellcheck="false" required aria-describedby="trkMsg"><label for="trkCode">Código de rastreio</label><span class="msg" id="trkMsg">Informe o código de rastreio.</span></div>
+        <button class="btn mag" type="submit">Rastrear <svg><use href="#i-arrow"/></svg></button>
+      </form>
+      <p class="trk-hint">Exemplo para testar: <button type="button" id="trkDemo">CAD123456</button></p>
+      <div class="trk-res" id="trkRes" aria-live="polite" hidden></div>
     </div>
   </div>
 </section>
@@ -706,7 +775,68 @@ button { font: inherit; color: inherit; }
   var spy = new IntersectionObserver(function (es) {
     es.forEach(function (e) { if (e.isIntersecting) links.forEach(function (l) { l.classList.toggle('on', l.getAttribute('href') === '#' + e.target.id); }); });
   }, { rootMargin: '-45% 0px -50% 0px' });
-  ['home', 'empresa', 'servicos', 'atuacao', 'contato'].forEach(function (id) { spy.observe(document.getElementById(id)); });
+  ['home', 'empresa', 'servicos', 'rastreio', 'atuacao', 'contato'].forEach(function (id) { spy.observe(document.getElementById(id)); });
+
+  /* ---------- Rastreio ---------- */
+  (function () {
+    var form = $('#trkForm'), input = $('#trkCode'), box = $('#trkRes'), field = $('#f-trk'), cache = null;
+    var ETAPAS = ['Coletada', 'Em trânsito', 'Saiu para entrega', 'Entregue'];
+    var norm = function (v) { return String(v || '').toUpperCase().replace(/[^A-Z0-9]/g, ''); };
+    function load() {
+      if (cache) return Promise.resolve(cache);
+      return fetch('rastreio.json', { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (j) {
+        cache = {}; Object.keys(j).forEach(function (k) { if (k.charAt(0) !== '_') cache[norm(k)] = j[k]; }); return cache;
+      });
+    }
+    function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+    function dt(iso, onlyDate) {
+      var d = new Date(iso); if (isNaN(d)) return iso;
+      var o = { day: '2-digit', month: '2-digit', year: 'numeric' }; if (!onlyDate) { o.hour = '2-digit'; o.minute = '2-digit'; }
+      return d.toLocaleString('pt-BR', o);
+    }
+    function error(title, msg) {
+      box.textContent = ''; var w = el('div', 'trk-err'); w.appendChild(el('h3', 'disp', title)); w.appendChild(el('p', null, msg)); box.appendChild(w); box.hidden = false;
+    }
+    function show(code, d) {
+      var et = Math.min(4, Math.max(1, d.etapa | 0)), fin = et === 4;
+      box.textContent = '';
+      var top = el('div', 'trk-top'), c = el('div', 'trk-code', 'Código'); c.appendChild(el('b', null, code));
+      var bd = el('span', 'trk-badge' + (fin ? ' is-fin' : '')); bd.appendChild(el('span', null, ETAPAS[et - 1])); top.appendChild(c); top.appendChild(bd); box.appendChild(top);
+      var r = el('div', 'trk-route'); r.appendChild(el('span', null, d.origem)); r.appendChild(el('i')); r.appendChild(el('span', null, d.destino)); box.appendChild(r);
+      var ol = el('ol', 'trk-steps'); ol.setAttribute('aria-label', 'Etapas do envio');
+      ETAPAS.forEach(function (n, i) { var li = el('li', (i < et ? 'ok' : '') + (i === et - 1 ? ' now' : '') + (fin && i === 3 ? ' fin' : ''), n); if (i === et - 1) li.setAttribute('aria-current', 'step'); ol.appendChild(li); });
+      box.appendChild(ol);
+      var dl = el('dl', 'trk-meta');
+      [[fin ? 'Entregue em' : 'Previsão de entrega', d.previsao ? dt(d.previsao, true) : 'A confirmar'], ['Serviço', d.servico || 'Transporte de cargas'], ['Volumes', d.volumes || '-']].forEach(function (m) {
+        var x = el('div'); x.appendChild(el('dt', null, m[0])); x.appendChild(el('dd', null, m[1])); dl.appendChild(x);
+      });
+      box.appendChild(dl);
+      box.appendChild(el('h3', 'disp trk-h', 'Histórico'));
+      var ul = el('ul', 'trk-ev');
+      (d.eventos || []).slice().sort(function (a, b) { return new Date(b.data) - new Date(a.data); }).forEach(function (ev) {
+        var li = el('li'); li.appendChild(el('time', null, dt(ev.data)));
+        var w = el('div'); w.appendChild(el('b', null, ev.descricao)); w.appendChild(el('small', null, ev.local)); li.appendChild(w); ul.appendChild(li);
+      });
+      box.appendChild(ul);
+      box.appendChild(el('p', 'trk-note', 'Dúvidas sobre a sua entrega? Fale com a Cadomar pelo (51) 3052-2666.'));
+      box.hidden = false;
+    }
+    function run(raw) {
+      var code = norm(raw);
+      field.classList.toggle('err', !code); if (!code) { box.hidden = true; input.focus(); return; }
+      error('Consultando...', 'Aguarde um instante.');
+      load().then(function (db) {
+        if (db[code]) show(code, db[code]);
+        else error('Código não encontrado', 'Confira o código digitado, sem espaços. Se ele estiver correto, a carga pode ainda não ter sido registrada. Fale com a Cadomar pelo (51) 3052-2666.');
+      }).catch(function () { error('Rastreio indisponível', 'Não foi possível consultar agora. Tente novamente em instantes ou ligue para (51) 3052-2666.'); });
+      try { history.replaceState(null, '', '?rastreio=' + encodeURIComponent(code) + '#rastreio'); } catch (e) {}
+    }
+    form.addEventListener('submit', function (e) { e.preventDefault(); run(input.value); });
+    input.addEventListener('input', function () { field.classList.remove('err'); });
+    $('#trkDemo').addEventListener('click', function () { input.value = 'CAD123456'; run(input.value); });
+    var q = new URLSearchParams(location.search).get('rastreio');
+    if (q) { input.value = q; run(q); }
+  })();
 
   /* ---------- Hero spotlight ---------- */
   var hero = $('#home'), hc = $('#heroColor');
