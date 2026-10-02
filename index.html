@@ -215,6 +215,8 @@ button { font: inherit; color: inherit; }
 .panel .bg { background-image: url(assets/frota-patio.jpg), var(--gradient-photo); background-blend-mode: luminosity, normal; background-size: auto 190%, cover; }
 .panel .bg2 { background-image: url(assets/frota-patio.jpg); opacity: 0; transition: opacity 600ms var(--ease); z-index: -2; }
 .panel.on .bg2 { opacity: 1; }
+.panel.arm .bg { background-image: url(assets/armazenagem.webp), var(--gradient-photo); background-size: cover, cover; background-position: 60% 62%; }
+.panel.arm .bg2 { background-image: url(assets/armazenagem.webp); background-size: cover; background-position: 60% 62%; }
 .panel .scrim { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(20,22,26,.25) 0%, rgba(20,22,26,.1) 35%, rgba(20,22,26,.9) 100%); }
 .panel-tg { position: absolute; inset: 0; width: 100%; background: none; border: 0; cursor: pointer; text-align: left; padding: 24px 22px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; }
 .panel-tg svg { width: 30px; height: 30px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 500ms var(--ease-out), stroke 300ms; }
@@ -526,7 +528,7 @@ button { font: inherit; color: inherit; }
         </button>
         <div class="panel-body" id="p2"><h3>Logística</h3><p>Soluções de coleta, distribuição e roteirização para indústria e comércio.</p><a class="btn sm" href="#contato" data-pick="Logística">Solicitar cotação</a></div>
       </article>
-      <article class="panel" style="--px:4%" data-svc="Armazenagem">
+      <article class="panel arm" style="--px:4%" data-svc="Armazenagem">
         <div class="bg"></div><div class="bg2"></div><div class="scrim"></div>
         <button class="panel-tg" aria-expanded="false" aria-controls="p3">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V9l9-5 9 5v12"/><path d="M7 21v-8h10v8"/><path d="M7 17h10"/></svg>
