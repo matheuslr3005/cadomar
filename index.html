@@ -388,6 +388,19 @@ button { font: inherit; color: inherit; }
       .trk-steps li { font-size: 10px; letter-spacing: .02em; }
 }
 
+/* ---------- Mapa ---------- */
+.maps { margin-top: 48px; }
+.maps-bar { display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.mtabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.mtab { cursor: pointer; padding: 10px 18px; background: var(--surface-card); border: 1px solid var(--border-default); border-radius: var(--radius); font-size: 13px; font-weight: 700; font-stretch: 110%; letter-spacing: .04em; text-transform: uppercase; color: var(--text-strong); transition: background 200ms var(--ease), color 200ms var(--ease), border-color 200ms var(--ease); }
+.mtab:hover { border-color: var(--red-500); }
+.mtab[aria-selected="true"] { background: var(--ink-900); color: #fff; border-color: var(--ink-900); }
+.maps-links { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; font-weight: 700; }
+.maps-links a { color: var(--accent-text); }
+.maps-frame { position: relative; height: clamp(320px, 42vw, 440px); border: 1px solid var(--border-subtle); border-radius: var(--radius); overflow: hidden; background: var(--ink-100); box-shadow: var(--shadow-md); }
+.maps-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.maps-addr { margin-top: 10px; font-size: 14px; color: var(--text-muted); }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 980px) {
   .hdr nav { display: none; }
@@ -655,6 +668,17 @@ button { font: inherit; color: inherit; }
           <div class="row"><span>saopaulo@cadomar.com.br</span><button class="copy" data-copy="saopaulo@cadomar.com.br"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>Copiar</button></div>
         </div>
       </div>
+    </div>
+    <div class="maps" id="maps" data-fade>
+      <div class="maps-bar">
+        <div class="mtabs" role="tablist" aria-label="Escolha a unidade">
+          <button class="mtab" role="tab" type="button" aria-selected="true" aria-controls="mapFrame" data-q="Rua Berto Círio, 1088, São Luiz, Canoas, RS, Brasil" data-addr="Matriz Canoas: Rua Berto Círio, 1088, São Luiz, Canoas / RS">Matriz Canoas</button>
+          <button class="mtab" role="tab" type="button" aria-selected="false" aria-controls="mapFrame" data-q="Rod. Régis Bittencourt, 294, Itapecerica da Serra, SP, Brasil" data-addr="Filial São Paulo: Rod. Régis Bittencourt, 294, Sala 06, Itapecerica da Serra / SP">Filial São Paulo</button>
+        </div>
+        <div class="maps-links"><a id="mapOpen" href="#" target="_blank" rel="noopener">Abrir no Google Maps</a><a id="mapRoute" href="#" target="_blank" rel="noopener">Como chegar</a></div>
+      </div>
+      <div class="maps-frame" id="mapFrame" role="tabpanel"><iframe id="mapIframe" title="Mapa da unidade Cadomar no Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen src="https://www.google.com/maps?q=Rua%20Berto%20C%C3%ADrio%2C%201088%2C%20S%C3%A3o%20Luiz%2C%20Canoas%2C%20RS%2C%20Brasil&amp;hl=pt-BR&amp;z=16&amp;output=embed"></iframe></div>
+      <p class="maps-addr" id="mapAddr">Matriz Canoas: Rua Berto Círio, 1088, São Luiz, Canoas / RS</p>
     </div>
   </div>
 </section>
@@ -980,6 +1004,23 @@ button { font: inherit; color: inherit; }
       try { navigator.clipboard.writeText(txt).then(ok, fallback); } catch (e) { fallback(); }
     });
   });
+
+  /* ---------- Mapa ---------- */
+  (function () {
+    var tabs = $$('.mtab'), ifr = $('#mapIframe'), addr = $('#mapAddr'), open = $('#mapOpen'), route = $('#mapRoute');
+    function pick(t) {
+      var q = encodeURIComponent(t.dataset.q);
+      tabs.forEach(function (b) { b.setAttribute('aria-selected', b === t ? 'true' : 'false'); });
+      ifr.src = 'https://www.google.com/maps?q=' + q + '&hl=pt-BR&z=16&output=embed';
+      open.href = 'https://www.google.com/maps/search/?api=1&query=' + q;
+      route.href = 'https://www.google.com/maps/dir/?api=1&destination=' + q;
+      addr.textContent = t.dataset.addr;
+    }
+    tabs.forEach(function (t) { t.addEventListener('click', function () { pick(t); }); });
+    var q0 = encodeURIComponent(tabs[0].dataset.q);
+    open.href = 'https://www.google.com/maps/search/?api=1&query=' + q0;
+    route.href = 'https://www.google.com/maps/dir/?api=1&destination=' + q0;
+  })();
 
   /* ---------- Form ---------- */
   var form = $('#form'), card = $('#formCard');
