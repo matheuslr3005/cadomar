@@ -348,39 +348,26 @@ button { font: inherit; color: inherit; }
 .trk-badge { display: inline-block; margin-right: 10px; transform: var(--slant); padding: 8px 18px; background: var(--red-500); color: #fff; }
 .trk-badge span { display: inline-block; transform: var(--unslant); font-size: 13px; font-weight: 800; font-stretch: 110%; letter-spacing: .08em; text-transform: uppercase; }
 .trk-badge.is-fin { background: var(--green-500); }
-.trk-route { display: flex; align-items: center; gap: 16px; margin: 28px 0 8px; color: var(--text-strong); font-weight: 800; font-stretch: 110%; font-size: clamp(1.05rem, 2.2vw, 1.4rem); }
-.trk-route i { flex: 1; min-width: 28px; height: 3px; background: var(--border-default); position: relative; }
-.trk-route i::after { content: ""; position: absolute; right: -2px; top: -4px; border: 5px solid transparent; border-left: 8px solid var(--border-default); }
-.trk-steps { list-style: none; margin: 28px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; position: relative; }
+.trk-steps { list-style: none; margin: 32px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; position: relative; }
 .trk-steps li { position: relative; padding-top: 30px; font-size: 13px; font-weight: 700; font-stretch: 110%; letter-spacing: .04em; text-transform: uppercase; color: var(--text-muted); }
 .trk-steps li::before { content: ""; position: absolute; left: 0; top: 0; width: 18px; height: 18px; border-radius: 50%; background: var(--surface-card); border: 3px solid var(--border-default); z-index: 1; }
 .trk-steps li::after { content: ""; position: absolute; left: 18px; right: -8px; top: 8px; height: 3px; background: var(--border-default); }
 .trk-steps li:last-child::after { display: none; }
+.trk-steps li small { display: block; margin-top: 4px; font-size: 13px; font-weight: 500; font-stretch: 100%; letter-spacing: 0; text-transform: none; color: var(--text-muted); font-variant-numeric: tabular-nums; }
 .trk-steps li.ok { color: var(--text-strong); }
 .trk-steps li.ok::before { background: var(--red-500); border-color: var(--red-500); }
 .trk-steps li.ok::after { background: var(--red-500); }
 .trk-steps li.now::before { box-shadow: 0 0 0 5px rgba(218,37,28,.22); }
 .trk-steps li.ok.fin::before { background: var(--green-500); border-color: var(--green-500); }
-.trk-meta { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 32px 0 0; }
-.trk-meta div { padding: 14px 16px; background: var(--surface-sunken); border-left: 3px solid var(--red-500); }
-.trk-meta dt { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); }
-.trk-meta dd { margin: 2px 0 0; font-weight: 700; color: var(--text-strong); }
-.trk-h { margin: 32px 0 4px; font-size: 18px; color: var(--text-strong); }
-.trk-ev { list-style: none; margin: 0; padding: 0; }
-.trk-ev li { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 4px 20px; padding: 14px 0; border-top: 1px solid var(--border-subtle); }
-.trk-ev time { font-size: 14px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
-.trk-ev b { display: block; color: var(--text-strong); }
-.trk-ev small { font-size: 14px; color: var(--text-muted); }
-.trk-ev li:first-child b::before { content: "Último: "; color: var(--accent-text); }
 .trk-err { display: flex; flex-direction: column; gap: 8px; }
 .trk-err h3 { font-size: 22px; color: var(--text-strong); }
+.trk-eta { margin-top: 28px; padding: 14px 16px; background: var(--surface-sunken); border-left: 3px solid var(--red-500); color: var(--text-strong); font-weight: 700; }
+.trk-eta span { display: block; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); font-weight: 700; }
 .trk-note { margin-top: 24px; font-size: 12px; color: var(--text-muted); }
 @media (max-width: 560px) {
   .trk-form { grid-template-columns: minmax(0, 1fr); }
   .trk-form .btn { width: 100%; }
-  .trk-meta { grid-template-columns: minmax(0, 1fr); }
-  .trk-ev li { grid-template-columns: minmax(0, 1fr); }
-  .trk-steps li { font-size: 10px; letter-spacing: .02em; }
+      .trk-steps li { font-size: 10px; letter-spacing: .02em; }
 }
 
 /* ---------- Responsive ---------- */
@@ -556,7 +543,7 @@ button { font: inherit; color: inherit; }
     <div class="sh">
       <span class="overline"><span class="rule"></span>Rastreio</span>
       <h2 class="disp" data-split>Acompanhe a sua carga</h2>
-      <p class="lead" data-fade>Digite o código de rastreio informado pela Cadomar e veja onde está o seu envio.</p>
+      <p class="lead" data-fade>Digite o código de rastreio informado pela Cadomar e veja em que etapa está o seu envio.</p>
     </div>
     <div class="card raised trk-card" data-fade>
       <form class="trk-form" id="trkForm" novalidate>
@@ -780,7 +767,7 @@ button { font: inherit; color: inherit; }
   /* ---------- Rastreio ---------- */
   (function () {
     var form = $('#trkForm'), input = $('#trkCode'), box = $('#trkRes'), field = $('#f-trk'), cache = null;
-    var ETAPAS = ['Coletada', 'Em trânsito', 'Saiu para entrega', 'Entregue'];
+    var ETAPAS = ['Coletado', 'Em trânsito', 'Entregue'], CAMPOS = ['coletado', 'transito', 'entregue'];
     var norm = function (v) { return String(v || '').toUpperCase().replace(/[^A-Z0-9]/g, ''); };
     function load() {
       if (cache) return Promise.resolve(cache);
@@ -798,26 +785,18 @@ button { font: inherit; color: inherit; }
       box.textContent = ''; var w = el('div', 'trk-err'); w.appendChild(el('h3', 'disp', title)); w.appendChild(el('p', null, msg)); box.appendChild(w); box.hidden = false;
     }
     function show(code, d) {
-      var et = Math.min(4, Math.max(1, d.etapa | 0)), fin = et === 4;
+      var et = 1, fin; CAMPOS.forEach(function (c, i) { if (d[c]) et = i + 1; }); fin = et === 3;
       box.textContent = '';
       var top = el('div', 'trk-top'), c = el('div', 'trk-code', 'Código'); c.appendChild(el('b', null, code));
       var bd = el('span', 'trk-badge' + (fin ? ' is-fin' : '')); bd.appendChild(el('span', null, ETAPAS[et - 1])); top.appendChild(c); top.appendChild(bd); box.appendChild(top);
-      var r = el('div', 'trk-route'); r.appendChild(el('span', null, d.origem)); r.appendChild(el('i')); r.appendChild(el('span', null, d.destino)); box.appendChild(r);
       var ol = el('ol', 'trk-steps'); ol.setAttribute('aria-label', 'Etapas do envio');
-      ETAPAS.forEach(function (n, i) { var li = el('li', (i < et ? 'ok' : '') + (i === et - 1 ? ' now' : '') + (fin && i === 3 ? ' fin' : ''), n); if (i === et - 1) li.setAttribute('aria-current', 'step'); ol.appendChild(li); });
+      ETAPAS.forEach(function (n, i) {
+        var li = el('li', (i < et ? 'ok' : '') + (i === et - 1 ? ' now' : '') + (fin && i === 2 ? ' fin' : ''), n);
+        if (d[CAMPOS[i]]) li.appendChild(el('small', null, dt(d[CAMPOS[i]])));
+        if (i === et - 1) li.setAttribute('aria-current', 'step'); ol.appendChild(li);
+      });
       box.appendChild(ol);
-      var dl = el('dl', 'trk-meta');
-      [[fin ? 'Entregue em' : 'Previsão de entrega', d.previsao ? dt(d.previsao, true) : 'A confirmar'], ['Serviço', d.servico || 'Transporte de cargas'], ['Volumes', d.volumes || '-']].forEach(function (m) {
-        var x = el('div'); x.appendChild(el('dt', null, m[0])); x.appendChild(el('dd', null, m[1])); dl.appendChild(x);
-      });
-      box.appendChild(dl);
-      box.appendChild(el('h3', 'disp trk-h', 'Histórico'));
-      var ul = el('ul', 'trk-ev');
-      (d.eventos || []).slice().sort(function (a, b) { return new Date(b.data) - new Date(a.data); }).forEach(function (ev) {
-        var li = el('li'); li.appendChild(el('time', null, dt(ev.data)));
-        var w = el('div'); w.appendChild(el('b', null, ev.descricao)); w.appendChild(el('small', null, ev.local)); li.appendChild(w); ul.appendChild(li);
-      });
-      box.appendChild(ul);
+      if (!fin && d.previsao) { var eta = el('p', 'trk-eta'); eta.appendChild(el('span', null, 'Previsão de entrega')); eta.appendChild(document.createTextNode(dt(d.previsao, true))); box.appendChild(eta); }
       box.appendChild(el('p', 'trk-note', 'Dúvidas sobre a sua entrega? Fale com a Cadomar pelo (51) 3052-2666.'));
       box.hidden = false;
     }

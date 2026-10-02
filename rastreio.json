@@ -1,41 +1,20 @@
 {
-  "_aviso": "DADOS DE EXEMPLO. Substitua pelos rastreios reais da Cadomar (veja LEIA-ME-RASTREIO.md). Cada chave é o código que o cliente digita, em MAIÚSCULAS e sem espaços.",
+  "_aviso": "DADOS DE EXEMPLO. Substitua pelos rastreios reais da Cadomar (veja LEIA-ME-RASTREIO.md). Este arquivo é público: não coloque cidades, rotas, nomes de clientes ou qualquer dado que permita localizar a carga.",
   "CAD123456": {
-    "origem": "Canoas / RS",
-    "destino": "Itapecerica da Serra / SP",
-    "servico": "Transporte de cargas",
-    "volumes": "12 volumes",
-    "previsao": "2026-10-04",
-    "etapa": 2,
-    "eventos": [
-      { "data": "2026-10-01T08:30", "local": "Canoas / RS", "descricao": "Carga coletada na origem" },
-      { "data": "2026-10-01T18:10", "local": "Canoas / RS", "descricao": "Carga embarcada, viagem iniciada" },
-      { "data": "2026-10-02T14:45", "local": "Curitiba / PR", "descricao": "Em trânsito, passagem pela rota Curitiba / PR" }
-    ]
+    "coletado": "2026-10-01T08:30",
+    "transito": "2026-10-01T18:10",
+    "entregue": null,
+    "previsao": "2026-10-04"
   },
   "CAD654321": {
-    "origem": "Itapecerica da Serra / SP",
-    "destino": "Porto Alegre / RS",
-    "servico": "Transporte de cargas",
-    "volumes": "4 volumes",
-    "previsao": "2026-09-30",
-    "etapa": 4,
-    "eventos": [
-      { "data": "2026-09-27T09:00", "local": "Itapecerica da Serra / SP", "descricao": "Carga coletada na origem" },
-      { "data": "2026-09-28T07:20", "local": "Itapecerica da Serra / SP", "descricao": "Viagem iniciada" },
-      { "data": "2026-09-30T07:40", "local": "Porto Alegre / RS", "descricao": "Saiu para entrega ao destinatário" },
-      { "data": "2026-09-30T11:25", "local": "Porto Alegre / RS", "descricao": "Entrega realizada" }
-    ]
+    "coletado": "2026-09-27T09:00",
+    "transito": "2026-09-28T07:20",
+    "entregue": "2026-09-30T11:25"
   },
   "CAD111222": {
-    "origem": "Canoas / RS",
-    "destino": "Goiânia / GO",
-    "servico": "Logística",
-    "volumes": "30 volumes",
-    "previsao": "2026-10-07",
-    "etapa": 1,
-    "eventos": [
-      { "data": "2026-10-01T10:15", "local": "Canoas / RS", "descricao": "Carga coletada na origem" }
-    ]
+    "coletado": "2026-10-01T10:15",
+    "transito": null,
+    "entregue": null,
+    "previsao": "2026-10-07"
   }
 }
