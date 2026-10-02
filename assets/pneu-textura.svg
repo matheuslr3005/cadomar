@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 420" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <pattern id="v" width="44" height="26" patternUnits="userSpaceOnUse">
+      <path d="M0 3 L22 15 L44 3 L44 11 L22 23 L0 11 Z" fill="#3a0503"/>
+    </pattern>
+    <linearGradient id="f" x1="0" x2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".18" stop-color="#fff" stop-opacity="1"/>
+      <stop offset=".82" stop-color="#fff" stop-opacity="1"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <mask id="m" maskUnits="userSpaceOnUse" x="0" y="0" width="1600" height="420"><rect width="1600" height="420" fill="url(#f)"/></mask>
+  </defs>
+  <g mask="url(#m)" opacity=".22" transform="rotate(-5 800 210)">
+    <rect x="-100" y="30" width="1800" height="140" fill="url(#v)"/>
+    <rect x="-100" y="250" width="1800" height="140" fill="url(#v)"/>
+    <g fill="#3a0503">
+      <rect x="-100" y="22" width="1800" height="4"/><rect x="-100" y="174" width="1800" height="4"/>
+      <rect x="-100" y="242" width="1800" height="4"/><rect x="-100" y="394" width="1800" height="4"/>
+    </g>
+  </g>
+</svg>
